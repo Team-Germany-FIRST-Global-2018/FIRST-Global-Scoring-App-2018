@@ -1,5 +1,8 @@
 package de.firstglobalgermany.fgcscoringapp;
 
+import android.graphics.Color;
+import android.icu.text.RelativeDateTimeFormatter;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +12,40 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+	CountDownTimer countdown;
+	long time;
+
+	TextView timeView;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		timeView = findViewById(R.id.vTime);
+		countdown = createTimer();
+	}
+
+	public CountDownTimer createTimer(){
+		return new CountDownTimer(150000, 1000) {
+			@Override
+			public void onTick(long l) {
+				int minutes = (int)Math.floor(l/1000/60);
+				int seconds = (int)(l-minutes*1000*60)/1000;
+				timeView.setText(Integer.toString(minutes)+":"+Integer.toString(seconds));
+			}
+
+			@Override
+			public void onFinish() {
+				timeView.setTextColor(Color.RED);
+			}
+		};
+	}
+
+	public void start(View v){
+		countdown.start();
+	}
+	/*
 	int solarPanels = 0;
 	long[] solarPanelTimes = new long[5];
 	boolean windTurbine = false;
@@ -172,5 +209,5 @@ public class MainActivity extends AppCompatActivity {
 		parkingText.setText("");
 		scoreText.setText("");
 	}
-
+	*/
 }
