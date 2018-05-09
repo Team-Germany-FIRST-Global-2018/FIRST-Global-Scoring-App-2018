@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.icu.text.RelativeDateTimeFormatter;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,11 @@ public class MainActivity extends AppCompatActivity {
 
 	CountDownTimer countdown;
 	long time;
+	boolean running = false;
 
 	TextView timeView;
+	TextView scoreView;
+
 	Button[] solarButtons = new Button[5];
 	TextView[] solarViews = new TextView[5];
 	int[] solarTime = new int[5];
@@ -29,17 +33,37 @@ public class MainActivity extends AppCompatActivity {
 	Button reactionButton;
 	int reactionTime;
 
+	TextView lowView;
+	Button lowButton;
+	Button lowUnscoreButton;
+	int lowNum;
+
+	TextView highView;
+	Button highButton;
+	Button highUnscoreButton;
+	int highNum;
+
+	TextView parkingView;
+	int parkingNum;
+
+	boolean coopertition = false;
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		timeView = findViewById(R.id.vTime);
+		scoreView = findViewById(R.id.vScore);
 		getSolars();
 		windView = findViewById(R.id.vWind);
 		windButton = findViewById(R.id.bWind);
 		reactionView = findViewById(R.id.vReaction);
 		reactionButton = findViewById(R.id.bReaction);
+		lowView = findViewById(R.id.vLow);
+		highView = findViewById(R.id.vHigh);
+		parkingView = findViewById(R.id.vParking);
 
 		countdown = createTimer();
 	}
@@ -51,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 				int minutes = (int)Math.floor(l/1000/60);
 				int seconds = (int)(l-minutes*1000*60)/1000;
 				time = l;
-				timeView.setText(Integer.toString(minutes)+":"+Integer.toString(seconds));
+				timeView.setText(getTimeString(l));
 			}
 
 			@Override
@@ -85,10 +109,43 @@ public class MainActivity extends AppCompatActivity {
 		}
 		return (Integer.toString(minutes)+":"+addition+Integer.toString(seconds));
 	}
-	public void start(View v){
-		countdown.start();
+	public void startReset(View v){
+		Button button = (Button)v;
+		timeView.setTextColor(Color.BLACK);
+		if(!running) {
+			button.setText("Reset");
+			button.setTextColor(Color.RED);
+			running = true;
+			countdown.start();
+		} else {
+			button.setText("Start");
+			button.setTextColor(Color.GREEN);
+			timeView.setText("2:30");
+			countdown.cancel();
+			running = false;
+			//reset
+		}
 	}
 
+	public void showScore(){
+		int totalScore = 0;
+		for(int i = 0; i<5; i++){
+			totalScore+=solarTime[i];
+		}
+		totalScore+=windTime;
+		totalScore+=reactionTime*3;
+		totalScore+=lowNum*5;
+		totalScore+=highNum*20;
+
+		if(coopertition){
+			totalScore+=100;
+		}
+		totalScore+=parkingNum*15;
+		if(parkingNum==3){
+			totalScore+=5;
+		}
+		scoreView.setText(Integer.toString(totalScore));
+	}
 	public void scoreSolar(View v){
 		int solarNum = 0;
 		for(int i = 0; i<5; i++){
@@ -103,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
 			solarViews[solarNum].setText("0:00");
 			solarTime[solarNum] = 0;
 		}
+		showScore();
 	}
 
 	public void scoreWind(View v){
@@ -115,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
 			windView.setText("0:00");
 			windTime = 0;
 		}
+		showScore();
 	}
 
 	public void scoreReaction(View v){
@@ -127,170 +186,64 @@ public class MainActivity extends AppCompatActivity {
 			reactionView.setText("0:00");
 			reactionTime = 0;
 		}
-	}
-	/*
-	int solarPanels = 0;
-	long[] solarPanelTimes = new long[5];
-	boolean windTurbine = false;
-	long windTurbineTime = 0;
-	boolean reactionPlant = false;
-	long reactionPlantTime = 0;
-	int combustionPlantLow = 0;
-	int combustionPlantHigh = 0;
-	boolean coopertition = false;
-	int parking = 0;
-	Chronometer chronometer;
-
-	int totalScore = 0;
-
-	TextView scoreText;
-	TextView solarText;
-	TextView windText;
-	TextView reactionText;
-	TextView combustionLowText;
-	TextView combustionHighText;
-	TextView coopertitionText;
-	TextView parkingText;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		chronometer = (Chronometer)findViewById(R.id.chronometer);
-
-		solarText = findViewById(R.id.infSolar);
-		windText = findViewById(R.id.infTurbine);
-		reactionText = findViewById(R.id.infReaction);
-		combustionLowText = findViewById(R.id.infCombustionLow);
-		combustionHighText = findViewById(R.id.infCombustionHigh);
-		coopertitionText = findViewById(R.id.infCoopertition);
-		parkingText = findViewById(R.id.infParking);
-		scoreText = findViewById(R.id.infScore);
+		showScore();
 	}
 
-	public void startGame(View v){
-		chronometer.setBase(SystemClock.elapsedRealtime());
-		chronometer.start();
+	public void scoreLow(View v){
+		lowNum++;
+		lowView.setText(Integer.toString(lowNum));
+		showScore();
 	}
 
-	public void scoreSolar(View v){
-		if(solarPanels < 5){
-			solarPanelTimes[solarPanels] = 150000 - (SystemClock.elapsedRealtime() - chronometer.getBase());
-			solarPanels++;
-
-			solarText.setText(Integer.toString(solarPanels));
-			showScore(v);
+	public void unscoreLow(View v){
+		if(lowNum > 0) {
+			lowNum--;
+			lowView.setText(Integer.toString(lowNum));
 		}
+		showScore();
 	}
 
-	public void scoreWind(View v){
-		if(windTurbine == false){
-			windTurbineTime = 150000 - (SystemClock.elapsedRealtime() - chronometer.getBase());
-			windTurbine = true;
-			showScore(v);
+	public void scoreHigh(View v){
+		highNum++;
+		highView.setText(Integer.toString(highNum));
+		showScore();
+	}
 
-			windText.setText(Long.toString(windTurbineTime/1000));
+	public void unscoreHigh(View v){
+		if(highNum > 0) {
+			highNum--;
+			highView.setText(Integer.toString(highNum));
 		}
-	}
-
-	public void scoreReaction(View v){
-		if(reactionPlant == false){
-			reactionPlantTime = 150000 - (SystemClock.elapsedRealtime() - chronometer.getBase());
-			reactionPlant = true;
-			showScore(v);
-
-			reactionText.setText(Long.toString(reactionPlantTime/1000));
-		}
-	}
-
-	public void scoreCombustionLow(View v){
-		combustionPlantLow+=1;
-		showScore(v);
-
-		combustionLowText.setText(Integer.toString(combustionPlantLow));
-	}
-
-	public void scoreCombustionHigh(View v){
-		combustionPlantHigh+=1;
-		showScore(v);
-
-		combustionHighText.setText(Integer.toString(combustionPlantHigh));
+		showScore();
 	}
 
 	public void scoreCoopertition(View v){
-		coopertition = true;
-		showScore(v);
-
-		coopertitionText.setText("Yes");
+		Button button = (Button)v;
+		if(!coopertition){
+			coopertition = true;
+			button.setTextColor(Color.GREEN);
+		} else {
+			coopertition = false;
+			button.setTextColor(Color.BLACK);
+		}
+		showScore();
 	}
 
 	public void scoreParking(View v){
-		if(parking < 3){
-			parking+=1;
-			showScore(v);
-
-			parkingText.setText(Integer.toString(parking));
+		if(parkingNum < 3) {
+			parkingNum++;
+			parkingView.setText(Integer.toString(parkingNum));
 		}
+		showScore();
 	}
 
-	public void showScore(View v){
-		totalScore = 0;
-
-		int solarScore = 0;
-		for(int i = 0; i<solarPanels; i++){
-			solarScore += (solarPanelTimes[i]) * 0.001;
+	public void unscoreParking(View v){
+		if(parkingNum > 0) {
+			parkingNum--;
+			parkingView.setText(Integer.toString(parkingNum));
 		}
-		totalScore+=solarScore;
-
-		int windScore = 0;
-		if(windTurbine){
-			windScore = (int)(Math.round(windTurbineTime) * 0.001);
-		}
-		totalScore+=windScore;
-
-		int reactionScore = 0;
-		if(reactionPlant){
-			reactionScore = (int)(reactionPlantTime * 0.003);
-		}
-		totalScore+=reactionScore;
-
-		int combustionScore = combustionPlantLow * 5 + combustionPlantHigh * 20;
-		totalScore+=combustionScore;
-
-		if(coopertition){
-			totalScore+=100;
-		}
-
-		int parkingScore=parking*15;
-		if(parking == 3){
-			parkingScore += 5;
-		}
-		totalScore+=parkingScore;
-
-		scoreText.setText(Integer.toString(totalScore));
+		showScore();
 	}
 
-	public void reset(View v) {
-		chronometer.stop();
-		chronometer.setBase(SystemClock.elapsedRealtime());
 
-		solarPanels = 0;
-		windTurbine = false;
-		reactionPlant = false;
-		combustionPlantLow = 0;
-		combustionPlantHigh = 0;
-		coopertition = false;
-		parking = 0;
-		totalScore = 0;
-
-		solarText.setText("");
-		windText.setText("");
-		reactionText.setText("");
-		combustionLowText.setText("");
-		combustionHighText.setText("");
-		coopertitionText.setText("");
-		parkingText.setText("");
-		scoreText.setText("");
-	}
-	*/
 }
