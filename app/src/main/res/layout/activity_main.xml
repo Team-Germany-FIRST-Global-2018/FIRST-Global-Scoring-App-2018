@@ -327,7 +327,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bStart" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/vScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -358,108 +358,113 @@
                 android:background="@android:color/darker_gray">
 
                 <Button
-                    android:id="@+id/button13"
+                    android:id="@+id/bSolar0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:onClick="scoreSolar"
                     android:text="Solar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/vSolar0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button13"
-                    app:layout_constraintStart_toEndOf="@+id/button13" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bSolar0"
+                    app:layout_constraintStart_toEndOf="@+id/bSolar0" />
 
                 <Button
-                    android:id="@+id/button14"
+                    android:id="@+id/bSolar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:onClick="scoreSolar"
                     android:text="Solar"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button13"
-                    app:layout_constraintStart_toEndOf="@+id/textView12" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bSolar0"
+                    app:layout_constraintStart_toEndOf="@+id/vSolar0" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/vSolar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button14"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bSolar1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/button14" />
+                    app:layout_constraintStart_toEndOf="@+id/bSolar1" />
 
                 <Button
-                    android:id="@+id/button15"
+                    android:id="@+id/bSolar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:onClick="scoreSolar"
                     android:text="Solar"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button14" />
+                    app:layout_constraintTop_toBottomOf="@+id/bSolar1" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/vSolar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button15"
-                    app:layout_constraintStart_toEndOf="@+id/button15" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bSolar2"
+                    app:layout_constraintStart_toEndOf="@+id/bSolar2" />
 
                 <Button
-                    android:id="@+id/button16"
+                    android:id="@+id/bSolar3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:onClick="scoreSolar"
                     android:text="Solar"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView14"
-                    app:layout_constraintStart_toEndOf="@+id/textView14" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/vSolar2"
+                    app:layout_constraintStart_toEndOf="@+id/vSolar2" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/vSolar3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button16"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bSolar3"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/button16" />
+                    app:layout_constraintStart_toEndOf="@+id/bSolar3" />
 
                 <Button
-                    android:id="@+id/button17"
+                    android:id="@+id/bSolar4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:onClick="scoreSolar"
                     android:text="Solar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button15" />
+                    app:layout_constraintTop_toBottomOf="@+id/bSolar2" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/vSolar4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button17"
-                    app:layout_constraintStart_toEndOf="@+id/button17" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bSolar4"
+                    app:layout_constraintStart_toEndOf="@+id/bSolar4" />
 
 
             </android.support.constraint.ConstraintLayout>
@@ -469,47 +474,49 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/bWind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:onClick="scoreWind"
                     android:text="Wind"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/vWind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button"
-                    app:layout_constraintStart_toEndOf="@+id/button" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bWind"
+                    app:layout_constraintStart_toEndOf="@+id/bWind" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/bReaction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:onClick="scoreReaction"
                     android:text="Reaction"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-                    app:layout_constraintStart_toEndOf="@+id/textView" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/vWind"
+                    app:layout_constraintStart_toEndOf="@+id/vWind" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/vReaction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:text="0:00"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button3"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bReaction"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/button3" />
+                    app:layout_constraintStart_toEndOf="@+id/bReaction" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -518,7 +525,7 @@
                 android:background="@android:color/darker_gray">
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/bLow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -528,17 +535,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/vLow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button4"
-                    app:layout_constraintStart_toEndOf="@+id/button4" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bLow"
+                    app:layout_constraintStart_toEndOf="@+id/bLow" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/bHigh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -547,7 +554,7 @@
                     android:text="Combustion High"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button4" />
+                    app:layout_constraintTop_toBottomOf="@+id/bLow" />
 
                 <android.support.constraint.Barrier
                     android:id="@+id/barrier2"
@@ -563,34 +570,34 @@
                     app:layout_constraintGuide_begin="20dp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/vHigh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button5"
-                    app:layout_constraintStart_toEndOf="@+id/button5" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bHigh"
+                    app:layout_constraintStart_toEndOf="@+id/bHigh" />
 
                 <Button
-                    android:id="@+id/button7"
+                    android:id="@+id/bLowUnscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Unscore"
                     android:textColor="@android:color/holo_red_dark"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-                    app:layout_constraintStart_toEndOf="@+id/textView4" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/vLow"
+                    app:layout_constraintStart_toEndOf="@+id/vLow" />
 
                 <Button
-                    android:id="@+id/button8"
+                    android:id="@+id/bHighUnscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Unscore"
                     android:textColor="@android:color/holo_red_dark"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
-                    app:layout_constraintStart_toEndOf="@+id/textView5" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/vHigh"
+                    app:layout_constraintStart_toEndOf="@+id/vHigh" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -598,7 +605,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/button6"
+                    android:id="@+id/bCoopertition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -608,7 +615,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button9"
+                    android:id="@+id/bParking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -617,27 +624,27 @@
                     android:text="Parking"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button6" />
+                    app:layout_constraintTop_toBottomOf="@+id/bCoopertition" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/vParking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="0"
                     android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/button9"
-                    app:layout_constraintStart_toEndOf="@+id/button9" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/bParking"
+                    app:layout_constraintStart_toEndOf="@+id/bParking" />
 
                 <Button
-                    android:id="@+id/button11"
+                    android:id="@+id/bParkingUnscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Unscore"
                     android:textColor="@android:color/holo_red_dark"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-                    app:layout_constraintStart_toEndOf="@+id/textView6" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/vParking"
+                    app:layout_constraintStart_toEndOf="@+id/vParking" />
 
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
