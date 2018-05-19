@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
 			timeView.setText("2:30");
 			countdown.cancel();
 			running = false;
+			finish();
+			startActivity(getIntent());
 			//reset
 		}
 	}
